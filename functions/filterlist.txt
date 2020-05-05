@@ -1,0 +1,9 @@
+C++
+Azure
+Docker
+Java
+Javascript
+Linux
+MySQL
+NoSQL
+.net

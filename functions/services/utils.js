@@ -2,12 +2,17 @@ const fs = require("fs");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-exports.fetchData = async (url) => {
-  const SITE_URL =
-    "https://www.finn.no/job/fulltime/search.html?hideConsentBox=&location=1.20001.20061&occupation=0.23";
+const fetchData = async (url) => {
   const result = await axios.get(url || SITE_URL);
   return cheerio.load(result.data);
 };
+
+exports.fetchPage = async (url) => await fetchData(url);
+
+exports.getYesterdaysAdPages = async (yesterdaysAdsUrls) =>
+  Promise.all(
+    yesterdaysAdsUrls.map((url) => fetchData(`https://www.finn.no${url}`))
+  );
 
 exports.getKeywords = () =>
   new Set(
@@ -40,7 +45,6 @@ exports.getTotalDayKeywordCount = (yesterdaysAdPages, keywords) => {
       textOnPage.includes(keyword) ? keywordsOnPage.add(keyword) : ""
     );
 
-    console.log("keywordsOnPage", keywordsOnPage);
     keywordsOnPage.forEach((keyword) =>
       totalDayKeywordCount.set(
         keyword,

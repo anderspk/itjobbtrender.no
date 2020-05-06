@@ -1,16 +1,7 @@
 steps:
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - kms
-      - decrypt
-      - --ciphertext-file=.env.enc
-      - --plaintext-file=.env
-      - --location=global
-      - --keyring=cicd
-      - --key=cloudbuild-env
-  # Insert other build steps here
-  # Deploy
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["install"]
+    dir: "functions/autodeploy"
   - name: "gcr.io/cloud-builders/gcloud"
-    args:
-      - functions
-      - deploy
+    args: ["functions", "deploy"]
+    dir: "functions"

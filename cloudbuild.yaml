@@ -3,4 +3,6 @@ steps:
     args: ["install"]
     dir: "functions"
   - name: "gcr.io/itjobbtrender/firebase"
-    args: ["deploy", "--only functions"]
+    args:
+     - deploy
+     - --only=hosting

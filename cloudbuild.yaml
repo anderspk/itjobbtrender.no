@@ -10,6 +10,7 @@ steps:
       - --key=cloudbuild-env
   # Insert other build steps here
   # Deploy
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["deploy"]
-    dir: "functions"
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - functions
+      - deploy

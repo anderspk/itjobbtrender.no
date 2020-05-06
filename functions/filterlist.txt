@@ -1,9 +1,17 @@
 C++
 Azure
+Backend
 Docker
+Frontend
 Java
 Javascript
+Junior
+Junior webutvikler
 Linux
 MySQL
 NoSQL
+Senior
+Senior Webutvikler
+UI
+UX
 .net

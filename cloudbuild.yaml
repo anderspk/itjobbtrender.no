@@ -3,4 +3,4 @@ steps:
     args: ["install"]
     dir: "functions"
   - name: "gcr.io/$PROJECT_ID/firebase"
-    args: ['']
+    args: ['deploy']

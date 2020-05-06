@@ -4,4 +4,3 @@ steps:
     dir: "functions"
   - name: "gcr.io/itjobbtrender/firebase"
     args: ["deploy", "--only functions"]
-    dir: "functions"

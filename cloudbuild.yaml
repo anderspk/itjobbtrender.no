@@ -2,7 +2,5 @@ steps:
   - name: "gcr.io/cloud-builders/npm"
     args: ["install"]
     dir: "functions"
-  - name: "gcr.io/itjobbtrender/firebase"
-    args:
-     - deploy
-     - --only=hosting
+  - name: "gcr.io/$PROJECT_ID/firebase"
+    args: ['deploy']

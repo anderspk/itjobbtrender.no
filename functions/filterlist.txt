@@ -13,6 +13,7 @@ MySQL
 NoSQL
 Senior
 Senior Webutvikler
+Systemutvikler
 UI
 UX
 .net

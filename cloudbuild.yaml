@@ -6,4 +6,4 @@ steps:
 
   # Deploy
   - name: "gcr.io/$PROJECT_ID/firebase"
-    args: ["deploy", "--only", "functions"]
+    args: ["deploy", "--only=functions"]

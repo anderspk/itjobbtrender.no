@@ -1,14 +1,40 @@
-const admin = require("firebase-admin");
-admin.initializeApp();
+const functions = require("firebase-functions");
 
-exports.addMessage = functions.https.onRequest(async (req, res) => {
-  // Grab the text parameter.
-  const original = req.query.text;
-  // Push the new message into the Realtime Database using the Firebase Admin SDK.
-  const snapshot = await admin
-    .database()
-    .ref("/messages")
-    .push({ original: original });
-  // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-  res.redirect(303, snapshot.ref.toString());
+const db = require("./services/db");
+const {
+  fetchPage,
+  getYesterdaysAdPages,
+  getKeywords,
+  getYesterdaysAdsUrls,
+  getTotalDayKeywordCount,
+} = require("./services/utils");
+
+exports.scheduledFunction = functions.pubsub
+  .schedule("every 60 minutes")
+  .onRun((context) => {
+    console.log("this will be run every 10 minutes");
+    return null;
+  });
+
+exports.isolatedFunction = functions.https.onRequest(async (req, res) => {
+  const SITE_URL =
+    "https://www.finn.no/job/fulltime/search.html?hideConsentBox=&location=1.20001.20061&occupation=0.23";
+
+  const $ = await fetchPage(SITE_URL);
+  const yesterdaysAdsUrls = getYesterdaysAdsUrls($);
+  const yesterdaysAdPages = await getYesterdaysAdPages(yesterdaysAdsUrls);
+
+  const keywords = getKeywords();
+
+  const totalDayKeywordCount = getTotalDayKeywordCount(
+    yesterdaysAdPages,
+    keywords
+  );
+
+  for (const keyValue of totalDayKeywordCount) {
+    // eslint-disable-next-line no-await-in-loop
+    await db.addKeyword(keyValue[0], keyValue[1]);
+  }
+
+  res.send("Completed");
 });

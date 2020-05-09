@@ -1,7 +1,8 @@
 {
   "functions": {},
   "hosting": {
-    "public": "public",
+    "site": "itjobbtrender",
+    "public": "client/build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }

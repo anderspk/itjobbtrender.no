@@ -1,0 +1,45 @@
+@import "../../../../styles/colors";
+
+.search-form {
+  position: relative;
+  input {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 1.75rem;
+    padding: 0.2rem 1rem;
+    font-family: inherit;
+    font-weight: 300;
+    outline: none;
+    border: 2px solid $light-grey;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #673ab7;
+    }
+  }
+
+  .auto-suggest {
+    border: 2px solid $light-grey;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+
+    .suggestion {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      font-weight: 300;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.in-focus {
+        background-color: $light-grey-20;
+      }
+    }
+  }
+}

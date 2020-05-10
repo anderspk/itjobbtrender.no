@@ -8,7 +8,7 @@ exports.scheduledFunction = functions.pubsub
   .schedule("every 15 minutes")
   .onRun(async (context) => {
     console.log("SCHEDULED FUNCTION RUNNING");
-    // await finn();
+    await finn();
     // console.log("Scheduled Function Complete");
     return null;
   });

@@ -7,8 +7,10 @@ exports.scheduledFunction = functions.pubsub
   // .timeZone("Europe/Oslo")
   .schedule("every 15 minutes")
   .onRun(async (context) => {
+    console.log("SCHEDULED FUNCTION RUNNING");
     await finn();
     console.log("Scheduled Function Complete");
+    return null;
   });
 
 // exports.isolatedFunction = functions.https.onRequest(finn);

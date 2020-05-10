@@ -39,10 +39,11 @@ exports.finn = async () => {
     keywords
   );
 
-  db.addDailySummary(yesterdaysAdsUrls.length);
+  const dbRequests = [db.addDailySummary(yesterdaysAdsUrls.length)];
   totalDayKeywordCount.forEach((count, keyword) =>
-    db.addKeyword(keyword, count)
+    dbRequests.push(db.addKeyword(keyword, count))
   );
+  await Promise.all(dbRequests);
   console.log("Finn.no scraper complete");
   return null;
 };

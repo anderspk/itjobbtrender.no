@@ -23,7 +23,6 @@ const addKeyword = async (keyword, count) => {
         .catch(() => new Error("Error updating keyword"));
     } else {
       await db.collection("keywords").doc(keyword).set({});
-
       await db
         .collection("keywords")
         .doc(keyword)
@@ -39,6 +38,21 @@ const addKeyword = async (keyword, count) => {
   }
 };
 
+const addDailySummary = async (adCount) => {
+  try {
+    const dailySummaryRef = db.collection("dailySummary");
+    await dailySummaryRef
+      .add({
+        date: admin.firestore.FieldValue.serverTimestamp(),
+        totalDayAdCount: adCount,
+      })
+      .catch(() => new Error("Error adding daily summary"));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   addKeyword,
+  addDailySummary,
 };

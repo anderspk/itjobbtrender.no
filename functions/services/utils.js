@@ -7,9 +7,9 @@ const fetchData = async (url) => {
   return cheerio.load(result.data);
 };
 
-exports.fetchPage = async (url) => await fetchData(url);
+exports.fetchPage = (url) => fetchData(url);
 
-exports.getYesterdaysAdPages = async (yesterdaysAdsUrls) =>
+exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
   Promise.all(
     yesterdaysAdsUrls.map((url) => fetchData(`https://www.finn.no${url}`))
   );
@@ -33,26 +33,29 @@ exports.getYesterdaysAdsUrls = ($) =>
     })
     .get());
 
+exports.getLastAdOnPageWasYesterday = ($) => {
+  const lastAd = $("article.ads__unit").children().last();
+
+  return $(".ads__unit__content__details", lastAd)
+    .text()
+    .includes("1 dag siden");
+};
+
 exports.getTotalDayKeywordCount = (yesterdaysAdPages, keywords) => {
   const totalDayKeywordCount = new Map();
+  keywords.forEach((keyword) => totalDayKeywordCount.set(keyword, 0));
 
   yesterdaysAdPages.forEach(($page) => {
-    const keywordsOnPage = new Set();
-
     const textOnPage = $page(".grid__unit.u-r-size2of3").text().toLowerCase();
 
-    keywords.forEach((keyword) =>
-      textOnPage.includes(keyword) ? keywordsOnPage.add(keyword) : ""
-    );
-
-    keywordsOnPage.forEach((keyword) =>
-      totalDayKeywordCount.set(
-        keyword,
-        totalDayKeywordCount.get(keyword)
-          ? totalDayKeywordCount.get(keyword) + 1
-          : 1
-      )
-    );
+    keywords.forEach((keyword) => {
+      if (textOnPage.includes(keyword)) {
+        totalDayKeywordCount.set(
+          keyword,
+          totalDayKeywordCount.get(keyword) + 1
+        );
+      }
+    });
   });
 
   return totalDayKeywordCount;

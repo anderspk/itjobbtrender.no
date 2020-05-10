@@ -1,0 +1,18 @@
+.keyword-chart {
+  max-height: 300px;
+
+  .chart-header h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    select {
+      border: none;
+      border-bottom: 1px solid black;
+      font-size: inherit;
+      font-weight: inherit;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

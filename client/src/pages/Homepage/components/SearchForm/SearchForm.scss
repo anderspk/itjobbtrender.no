@@ -2,6 +2,7 @@
 
 .search-form {
   position: relative;
+
   input {
     margin-top: 1rem;
     width: 100%;
@@ -10,7 +11,7 @@
     font-family: inherit;
     font-weight: 300;
     outline: none;
-    border: 2px solid $light-grey;
+    border: 2px solid $light-grey-30;
     border-radius: 4px;
     transition: border-color 0.2s;
 
@@ -20,13 +21,17 @@
   }
 
   .auto-suggest {
-    border: 2px solid $light-grey;
+    border: 2px solid $light-grey-30;
+    background-color: white;
     border-top: none;
     border-radius: 0 0 4px 4px;
+    width: 100%;
+    list-style: none;
+    position: absolute;
 
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 
     .suggestion {
       padding: 0.5rem 1rem;

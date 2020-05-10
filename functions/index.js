@@ -3,10 +3,12 @@ const functions = require("firebase-functions");
 const { finn } = require("./services/scrapers");
 
 exports.scheduledFunction = functions.pubsub
-  .schedule("0 10 * * *")
-  .timeZone("Europe/Oslo")
+  // .schedule("0 10 * * *")
+  // .timeZone("Europe/Oslo")
+  .schedule("every 5 minutes")
   .onRun(async (context) => {
     await finn();
+    console.log("Scheduled Function Complete");
     return null;
   });
 

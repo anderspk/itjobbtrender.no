@@ -44,6 +44,6 @@ exports.finn = async () => {
     dbRequests.push(db.addKeyword(keyword, count))
   );
   await Promise.all(dbRequests);
-
-  res.send("Completed");
+  console.log("Finn.no scraper complete");
+  return null;
 };

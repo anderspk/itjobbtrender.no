@@ -11,6 +11,7 @@ const db = admin.firestore();
 const addKeyword = async (keyword, count) => {
   const keywordRef = db.collection("keywords").doc(keyword);
   const keywordDoc = await keywordRef.get();
+  console.log("attempting to add keyword :" + keyword);
 
   try {
     if (keywordDoc.exists) {

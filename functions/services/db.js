@@ -8,45 +8,38 @@ try {
 
 const db = admin.firestore();
 
+const saveKeywords = (keywords) => {
+  keywords.forEach((count, keyword) => saveKeyword(keyword, count));
+};
+
 const saveKeyword = async (keyword, count) => {
-  // const keywordRef = db.collection("keywords").doc(keyword);
-  // const keywordSnapshot = await keywordRef.get();
+  const keywordRef = db.collection("keywords").doc(keyword);
+  const keywordSnapshot = await keywordRef.get();
 
-  await db.collection("keywords").doc(keyword).set({});
-  await db
-    .collection("keywords")
-    .doc(keyword)
-    .collection("history")
-    .add({
-      count,
-      date: admin.firestore.FieldValue.serverTimestamp(),
-    })
-    .catch(() => new Error("Error adding new keyword"));
-
-  // try {
-  //   if (keywordSnapshot.exists) {
-  //     await keywordRef
-  //       .collection("history")
-  //       .add({
-  //         count,
-  //         date: admin.firestore.FieldValue.serverTimestamp(),
-  //       })
-  //       .catch(() => new Error("Error updating keyword"));
-  //   } else {
-  //     await db.collection("keywords").doc(keyword).set({});
-  //     await db
-  //       .collection("keywords")
-  //       .doc(keyword)
-  //       .collection("history")
-  //       .add({
-  //         count,
-  //         date: admin.firestore.FieldValue.serverTimestamp(),
-  //       })
-  //       .catch(() => new Error("Error adding new keyword"));
-  //   }
-  // } catch (error) {
-  //   console.error(error);
-  // }
+  try {
+    if (keywordSnapshot.exists) {
+      await keywordRef
+        .collection("history")
+        .add({
+          count,
+          date: admin.firestore.FieldValue.serverTimestamp(),
+        })
+        .catch(() => new Error("Error updating keyword"));
+    } else {
+      await db.collection("keywords").doc(keyword).set({});
+      await db
+        .collection("keywords")
+        .doc(keyword)
+        .collection("history")
+        .add({
+          count,
+          date: admin.firestore.FieldValue.serverTimestamp(),
+        })
+        .catch(() => new Error("Error adding new keyword"));
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const saveDailySummary = async (adCount) => {
@@ -64,6 +57,6 @@ const saveDailySummary = async (adCount) => {
 };
 
 module.exports = {
-  saveKeyword,
+  saveKeywords,
   saveDailySummary,
 };

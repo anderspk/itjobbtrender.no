@@ -21,10 +21,11 @@ const saveKeywords = async (keywords) => {
   keywords.forEach(async (count, keyword) => {
     const keywordRef = db.collection("keywords").doc(keyword);
     promises.push(
-      keywordRef.collection("history").add({
-        count,
-        date: admin.firestore.FieldValue.serverTimestamp(),
-      })
+      console.log("Attempting to add: " + keyword) ||
+        keywordRef.collection("history").add({
+          count,
+          date: admin.firestore.FieldValue.serverTimestamp(),
+        })
     );
   });
 

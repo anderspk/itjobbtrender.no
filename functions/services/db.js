@@ -18,7 +18,8 @@ const saveKeywords = async (keywords) => {
   await batch.commit();
 
   const promises = [];
-  keywords.forEach(async (count, keyword) => {
+
+  for (const [keyword, count] of keywords.entries()) {
     const keywordRef = db.collection("keywords").doc(keyword);
     promises.push(
       console.log("Attempting to add: " + keyword) ||
@@ -27,7 +28,18 @@ const saveKeywords = async (keywords) => {
           date: admin.firestore.FieldValue.serverTimestamp(),
         })
     );
-  });
+  }
+
+  // keywords.entries(async (count, keyword) => {
+  //   const keywordRef = db.collection("keywords").doc(keyword);
+  //   promises.push(
+  //     console.log("Attempting to add: " + keyword) ||
+  //       keywordRef.collection("history").add({
+  //         count,
+  //         date: admin.firestore.FieldValue.serverTimestamp(),
+  //       })
+  //   );
+  // });
 
   await Promise.all(promises).catch((error) => console.error(error));
 

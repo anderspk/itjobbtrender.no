@@ -33,31 +33,7 @@ const saveKeywords = async (keywords) => {
     );
   }
 
-  // keywords.entries(async (count, keyword) => {
-  //   const keywordRef = db.collection("keywords").doc(keyword);
-  //   promises.push(
-  //     console.log("Attempting to add: " + keyword) ||
-  //       keywordRef.collection("history").add({
-  //         count,
-  //         date: admin.firestore.FieldValue.serverTimestamp(),
-  //       })
-  //   );
-  // });
-
   await Promise.all(promises).catch((error) => console.error(error));
-
-  //   try {
-  //     await keywordRef
-  //       .collection("history")
-  //       .add({
-  //         count,
-  //         date: admin.firestore.FieldValue.serverTimestamp(),
-  //       })
-  //       .catch(() => new Error("Error updating keyword"));
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // });
 };
 
 const saveKeyword = async (keyword, count) => {

@@ -41,11 +41,5 @@ exports.finn = async () => {
 
   await db.saveDailySummary(yesterdaysAdsUrls.length);
   await db.saveKeywords(totalDayKeywordCount);
-
-  // const dbRequests = [db.saveDailySummary(yesterdaysAdsUrls.length)];
-  // totalDayKeywordCount.forEach((count, keyword) =>
-  //   dbRequests.push(db.saveKeyword(keyword, count))
-  // );
-  // await Promise.all(dbRequests);
   console.log("Finn.no scraper complete");
 };

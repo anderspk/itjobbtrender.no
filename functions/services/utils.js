@@ -18,7 +18,8 @@ exports.getKeywords = () =>
   new Set(
     fs
       .readFileSync("./filterlist.txt", "utf-8")
-      .split("\r\n")
+      .replace(/(\r\n|\n|\r)/gm, "\n")
+      .split("\n")
       .map((word) => word.toLowerCase())
   );
 

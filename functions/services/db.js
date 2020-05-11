@@ -19,7 +19,10 @@ const saveKeywords = async (keywords) => {
 
   const promises = [];
 
+  console.log({ keywords });
+
   for (const [keyword, count] of keywords.entries()) {
+    console.log({ keyword, count });
     const keywordRef = db.collection("keywords").doc(keyword);
     promises.push(
       console.log("Attempting to add: " + keyword) ||

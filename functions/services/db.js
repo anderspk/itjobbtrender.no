@@ -9,30 +9,10 @@ try {
 const db = admin.firestore();
 
 const saveKeywords = async (keywords) => {
-  const batch = db.batch();
-  keywords.forEach((count, keyword) => {
-    const docRef = db.collection("keywords").doc(keyword);
-    batch.set(docRef, {});
-  });
-
-  await batch.commit();
-
   const promises = [];
-
-  console.log({ keywords });
-
-  for (const [keyword, count] of keywords.entries()) {
-    console.log({ keyword, count });
-    const keywordRef = db.collection("keywords").doc(keyword);
-    promises.push(
-      console.log("Attempting to add: " + keyword) ||
-        keywordRef.collection("history").add({
-          count,
-          date: admin.firestore.FieldValue.serverTimestamp(),
-        })
-    );
-  }
-
+  keywords.forEach((count, keyword) => {
+    promises.push(saveKeyword(keyword, count));
+  });
   await Promise.all(promises).catch((error) => console.error(error));
 };
 

@@ -1,19 +1,19 @@
-C++
-C#
+Angular
+AWS
 Azure
 Backend
+C++
+C#
 Docker
 Frontend
 Java
 Javascript
-Junior
-Junior webutvikler
 Linux
 MySQL
 NoSQL
-Senior
-Senior Webutvikler
+PHP
 Systemutvikler
 UI
 UX
+Vue
 .net

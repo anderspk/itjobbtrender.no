@@ -11,8 +11,8 @@ exports.scheduledFunction = functions.pubsub
     return null;
   });
 
-exports.isolatedFunction = functions.https.onRequest(async () => {
-  await finn();
-  console.log("isolated done");
-  return "done";
-});
+// exports.isolatedFunction = functions.https.onRequest(async () => {
+//   await finn();
+//   console.log("isolated done");
+//   return "done";
+// });

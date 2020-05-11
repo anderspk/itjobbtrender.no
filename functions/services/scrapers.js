@@ -39,8 +39,8 @@ exports.finn = async () => {
     keywords
   );
 
-  db.saveDailySummary(yesterdaysAdsUrls.length);
-  db.saveKeywords(totalDayKeywordCount);
+  await db.saveDailySummary(yesterdaysAdsUrls.length);
+  await db.saveKeywords(totalDayKeywordCount);
 
   // const dbRequests = [db.saveDailySummary(yesterdaysAdsUrls.length)];
   // totalDayKeywordCount.forEach((count, keyword) =>

@@ -7,9 +7,28 @@ try {
 }
 
 const db = admin.firestore();
+const batch = db.batch();
 
-const saveKeywords = (keywords) => {
-  keywords.forEach((count, keyword) => saveKeyword(keyword, count));
+const saveKeywords = async (keywords) => {
+  keywords.forEach((count, keyword) => {
+    const docRef = db.collection("keywords").doc(keyword);
+    batch.set(docRef, {});
+  });
+  await batch.commit();
+  keywords.forEach(async (count, keyword) => {
+    const keywordRef = db.collection("keywords").doc(keyword);
+    try {
+      await keywordRef
+        .collection("history")
+        .add({
+          count,
+          date: admin.firestore.FieldValue.serverTimestamp(),
+        })
+        .catch(() => new Error("Error updating keyword"));
+    } catch (error) {
+      console.error(error);
+    }
+  });
 };
 
 const saveKeyword = async (keyword, count) => {

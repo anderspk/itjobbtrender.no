@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <a href="/" className="logo">
-        <span>ﾉｲ-ﾌの乃乃ｲ尺乇刀り乇尺</span>
+        ﾉｲ-ﾌの乃乃ｲ尺乇刀り乇尺
       </a>
     </header>
   );

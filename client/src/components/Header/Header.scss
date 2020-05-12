@@ -1,10 +1,13 @@
 header {
   padding: 1rem 0;
   .logo {
-    color: black;
+    color: white;
+    background-color: #06bffc;
+    padding: 0.5rem 1rem;
     text-decoration: none;
     font-size: 1.25rem;
-    font-weight: lighter;
+    font-weight: bold;
+    border-left: 5px solid #0063fc;
 
     &:hover {
       text-decoration: underline;

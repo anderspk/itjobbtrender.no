@@ -34,11 +34,12 @@ export const getMultipleKeywordsMonthsRange = async (keywords, monthsRange) => {
   return keyDataObject;
 };
 
-export const getDailySummaryForMonthRange = async (monthRange) => {
+export const getdailySummariesForMonthRange = async (monthRange) => {
   const fromDate = moment().subtract(monthRange, "month").toDate();
-  const dailySummary = await db
+  const dailySummaries = await db
     .collection("dailySummary")
     .where("date", ">", fromDate)
     .get();
-  return { dailySummary: dailySummary.docs.map((day) => day.data()) };
+  console.log({ dailySummaries });
+  return dailySummaries.docs.map((dailySummary) => dailySummary.data());
 };

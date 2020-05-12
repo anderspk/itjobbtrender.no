@@ -6,17 +6,19 @@ const Keywords = () => {
   const { keywords, handleRemoveKeyword } = useGlobalState();
 
   return (
-    <div className="keywords">
+    <ul className="keywords">
+      <li className="totalt">Anonser Totalt</li>
       {keywords.map((keyword) => (
-        <span
+        <li
           key={keyword}
           className="keyword"
           onClick={() => handleRemoveKeyword(keyword)}
         >
           {keyword}
-        </span>
+          <i className="close" />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

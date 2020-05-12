@@ -9,7 +9,7 @@ const first = "#ff6384";
 const second = "#36a2eb";
 
 const generateDatasets = (data) => {
-  const datasets = Object.keys(data).map((keyword) => ({
+  return Object.keys(data).map((keyword) => ({
     label: keyword,
     fill: false,
     lineTension: 0.3,
@@ -33,32 +33,29 @@ const generateDatasets = (data) => {
       y: count,
     })),
   }));
-
-  return {
-    datasets,
-  };
 };
 
-const generateDailySummaryDataset = (dailySummaryData) => {
+const generateDailySummariesDataset = (dailySummaries) => {
   return {
+    label: "Annonser Totalt",
     fill: false,
     lineTension: 0.3,
-    backgroundColor: "rgba(75,192,192,0.4)",
-    borderColor: first,
+    backgroundColor: "rgba(33,150,243,0.4)",
+    borderColor: "rgba(33,150,243)",
     borderCapStyle: "butt",
     borderDash: [],
     borderDashOffset: 0.0,
     borderJoinStyle: "miter",
-    pointBorderColor: first,
-    pointBackgroundColor: first,
+    pointBorderColor: "rgba(33,150,243)",
+    pointBackgroundColor: "rgba(33,150,243)",
     pointBorderWidth: 1,
     pointHoverRadius: 5,
-    pointHoverBackgroundColor: first,
-    pointHoverBorderColor: "rgba(220,220,220,1)",
+    pointHoverBackgroundColor: "rgba(33,150,243)",
+    pointHoverBorderColor: "rgba(33,150,243,1)",
     pointHoverBorderWidth: 2,
     pointRadius: 3,
     pointHitRadius: 10,
-    data: dailySummaryData.dailySummary.map(({ date, totalDayAdCount }) => ({
+    data: dailySummaries.map(({ date, totalDayAdCount }) => ({
       x: moment(date.toDate()),
       y: totalDayAdCount,
     })),
@@ -66,26 +63,30 @@ const generateDailySummaryDataset = (dailySummaryData) => {
 };
 
 const KeywordChart = () => {
-  const [dailySummaryData, setDailySummaryData] = useState();
+  const [dailySummaries, setDailySummaries] = useState();
   const { monthRange, handleNewMonthRange, chartData } = useGlobalState();
 
-  console.log({ dailySummaryData });
+  console.log({ dailySummaries });
 
   useEffect(() => {
     const fetchDailySummary = async () => {
-      const dailySummary = await db.getDailySummaryForMonthRange(monthRange);
-      setDailySummaryData(dailySummary);
+      const dailySummaries = await db.getdailySummariesForMonthRange(
+        monthRange
+      );
+      setDailySummaries(dailySummaries);
     };
     fetchDailySummary();
   }, [monthRange]);
 
-  const dataset = generateDatasets(chartData);
-
-  // const dataset = makeDates();
-
-  if (!dailySummaryData) {
+  if (!dailySummaries) {
     return <div>Loading...</div>;
   }
+
+  const dailySummariesDataset = generateDailySummariesDataset(dailySummaries);
+  const keywordsDatasets = generateDatasets(chartData);
+  const graphData = {
+    datasets: [dailySummariesDataset, ...keywordsDatasets],
+  };
 
   return (
     <div className="keyword-chart">
@@ -132,7 +133,7 @@ const KeywordChart = () => {
           },
         }}
         height={100}
-        data={dataset}
+        data={graphData}
       />
     </div>
   );

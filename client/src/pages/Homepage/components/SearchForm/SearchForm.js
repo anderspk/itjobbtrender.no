@@ -11,11 +11,14 @@ const SearchForm = () => {
 
   const searchFormRef = useRef(null);
 
-  const { handleNewSearch, allAvailableKeywords } = useGlobalState();
+  const { handleNewSearch, allAvailableKeywords, keywords } = useGlobalState();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (!allAvailableKeywords.includes(searchTerm)) {
+    if (
+      !allAvailableKeywords.includes(searchTerm) ||
+      keywords.includes(searchTerm)
+    ) {
       return;
     }
     handleNewSearch(searchTerm);
@@ -61,7 +64,11 @@ const SearchForm = () => {
     setFilteredList(
       newSearchTerm
         ? allAvailableKeywords
-            .filter((word) => word.startsWith(newSearchTerm.toLowerCase()))
+            .filter(
+              (word) =>
+                word.startsWith(newSearchTerm.toLowerCase()) &&
+                !keywords.includes(word)
+            )
             .splice(0, 5)
         : []
     );

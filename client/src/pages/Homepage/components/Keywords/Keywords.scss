@@ -1,9 +1,56 @@
+@import "../../../../styles/colors";
+
 .keywords {
   padding: 1rem 0;
-  .keyword {
-    display: inline-block;
-    padding: 1rem;
-    background-color: rgb(175, 124, 175);
+  display: flex;
+  list-style: none;
+
+  li {
+    padding: 0.5rem 0.75rem;
     margin-right: 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .totalt {
+    border: 2px solid rgb(0, 62, 231);
+    border-radius: 5px;
+  }
+  .keyword {
+    border: 2px solid rgb(175, 124, 175);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    &:hover .close {
+      opacity: 1;
+    }
+
+    .close {
+      display: inline-block;
+      position: relative;
+      margin-left: 1rem;
+      opacity: 0.25;
+    }
+
+    .close:before,
+    .close:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      content: " ";
+      height: 10px;
+      width: 2px;
+      background-color: black;
+    }
+    .close:before {
+      transform: rotate(45deg);
+    }
+    .close:after {
+      transform: rotate(-45deg);
+    }
   }
 }

@@ -19,6 +19,12 @@ const GlobalProvider = ({ children }) => {
   }, []);
 
   const handleNewSearch = async (searchTerm) => {
+    if (
+      !allAvailableKeywords.includes(searchTerm) ||
+      keywords.includes(searchTerm)
+    ) {
+      return;
+    }
     setKeywords([...keywords, searchTerm]);
 
     try {

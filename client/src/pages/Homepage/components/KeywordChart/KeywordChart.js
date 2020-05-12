@@ -80,6 +80,7 @@ const generateChartOptions = (monthRange) => {
   }
 
   const chartOptions = {
+    maintainAspectRatio: false,
     layout: {
       padding: {
         left: 5,

@@ -17,7 +17,7 @@ exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
 exports.getKeywords = () =>
   new Set(
     fs
-      .readFileSync("./filterlist.txt", "utf-8")
+      .readFileSync("../keywordsList.txt", "utf-8")
       .replace(/(\r\n|\n|\r)/gm, "\n")
       .split("\n")
       .map((word) => word.toLowerCase())
@@ -50,7 +50,7 @@ exports.getTotalDayKeywordCount = (yesterdaysAdPages, keywords) => {
     const textOnPage = $page(".grid__unit.u-r-size2of3").text().toLowerCase();
 
     keywords.forEach((keyword) => {
-      if (textOnPage.includes(keyword)) {
+      if (textOnPage.match(new RegExp(`\\b${keyword}\\b`))) {
         totalDayKeywordCount.set(
           keyword,
           totalDayKeywordCount.get(keyword) + 1

@@ -8,7 +8,7 @@ exports.finn = async () => {
     getYesterdaysAdsUrls,
     getTotalDayKeywordCount,
     getLastAdOnPageWasYesterday,
-  } = require("./utils");
+  } = require("./utils/finnUtils");
 
   const SITE_URL =
     "https://www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23";

@@ -11,13 +11,13 @@ const SearchForm = () => {
 
   const searchFormRef = useRef(null);
 
-  const { handleNewSearch, allAvailableKeywords, keywords } = useGlobalState();
+  const { handleNewSearch, allKeywords, activeKeywords } = useGlobalState();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (
-      !allAvailableKeywords.includes(searchTerm) ||
-      keywords.includes(searchTerm)
+      !allKeywords.includes(searchTerm) ||
+      activeKeywords.includes(searchTerm)
     ) {
       return;
     }
@@ -63,11 +63,11 @@ const SearchForm = () => {
     setSearchTerm(newSearchTerm);
     setFilteredList(
       newSearchTerm
-        ? allAvailableKeywords
+        ? allKeywords
             .filter(
               (word) =>
                 word.startsWith(newSearchTerm.toLowerCase()) &&
-                !keywords.includes(word)
+                !activeKeywords.includes(word)
             )
             .splice(0, 5)
         : []
@@ -93,6 +93,7 @@ const SearchForm = () => {
           value={searchTerm}
           onChange={handleKeyPress}
           onKeyDown={handleKeyPress}
+          placeholder="Søk"
         />
       </form>
       <ul

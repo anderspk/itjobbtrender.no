@@ -3,12 +3,12 @@ import { useGlobalState } from "../../../../providers/GlobalProvider";
 import "./Keywords.scss";
 
 const Keywords = () => {
-  const { keywords, handleRemoveKeyword } = useGlobalState();
+  const { activeKeywords, handleRemoveKeyword } = useGlobalState();
 
   return (
     <ul className="keywords">
       <li className="totalt">Anonser Totalt</li>
-      {keywords.map((keyword) => (
+      {activeKeywords.map((keyword) => (
         <li
           key={keyword}
           className="keyword"

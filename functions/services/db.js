@@ -48,7 +48,7 @@ const saveKeyword = async (keyword, count) => {
 
 const saveDailySummary = async (adCount) => {
   try {
-    const dailySummaryRef = db.collection("dailySummary");
+    const dailySummaryRef = db.collection("dailySummaries");
     await dailySummaryRef
       .add({
         date: admin.firestore.FieldValue.serverTimestamp(),

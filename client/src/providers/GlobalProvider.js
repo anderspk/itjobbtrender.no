@@ -5,27 +5,27 @@ const globalContext = createContext();
 const { Provider } = globalContext;
 
 const GlobalProvider = ({ children }) => {
-  const [allAvailableKeywords, setAllAvailableKeywords] = useState([]);
-  const [keywords, setKeywords] = useState([]);
+  const [allKeywords, setAllKeywords] = useState([]);
+  const [activeKeywords, setActiveKeywords] = useState([]);
   const [monthRange, setMonthRange] = useState(1);
   const [chartData, setChartData] = useState({});
 
-  const getAllAvailableKeywords = async () => {
-    setAllAvailableKeywords(await db.getAllKeywords());
+  const getAllKeywords = async () => {
+    setAllKeywords(await db.getAllKeywords());
   };
 
   useEffect(() => {
-    getAllAvailableKeywords();
+    getAllKeywords();
   }, []);
 
   const handleNewSearch = async (searchTerm) => {
     if (
-      !allAvailableKeywords.includes(searchTerm) ||
-      keywords.includes(searchTerm)
+      !allKeywords.includes(searchTerm) ||
+      activeKeywords.includes(searchTerm)
     ) {
       return;
     }
-    setKeywords([...keywords, searchTerm]);
+    setActiveKeywords([...activeKeywords, searchTerm]);
 
     try {
       const keywordChartData = await db.getKeywordForMonthRange(
@@ -39,7 +39,9 @@ const GlobalProvider = ({ children }) => {
   };
 
   const handleRemoveKeyword = (keywordToRemove) => {
-    setKeywords(keywords.filter((keyword) => keyword !== keywordToRemove));
+    setActiveKeywords(
+      activeKeywords.filter((keyword) => keyword !== keywordToRemove)
+    );
     const chartDataCopy = { ...chartData };
     delete chartDataCopy[keywordToRemove];
     setChartData(chartDataCopy);
@@ -48,7 +50,7 @@ const GlobalProvider = ({ children }) => {
   const handleNewMonthRange = async (newMonthRange) => {
     setMonthRange(newMonthRange);
     const chartDataWithNewMonthRange = await db.getMultipleKeywordsMonthsRange(
-      keywords,
+      activeKeywords,
       monthRange
     );
     setChartData(chartDataWithNewMonthRange);
@@ -56,9 +58,9 @@ const GlobalProvider = ({ children }) => {
 
   const contextValue = {
     handleNewSearch,
-    keywords,
+    activeKeywords,
     handleRemoveKeyword,
-    allAvailableKeywords,
+    allKeywords,
     monthRange,
     handleNewMonthRange,
     chartData,

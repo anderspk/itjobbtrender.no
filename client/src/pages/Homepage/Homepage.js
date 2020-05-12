@@ -9,8 +9,8 @@ const Homepage = () => {
   return (
     <div className="homepage">
       <h1>
-        Sammenlign hvilke IT-relaterte stikkord blir nevnt i Finn.no annonser
-        over tid
+        Sammenlign hvilke IT-relaterte stikkord blir nevnt i Finn.no
+        jobbannonser over tid
       </h1>
       <SearchForm />
       <Keywords />

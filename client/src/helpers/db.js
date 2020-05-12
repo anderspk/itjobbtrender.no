@@ -2,7 +2,6 @@ import { db } from "../services/firebase";
 import moment from "moment";
 
 export const getAllKeywords = async () => {
-  console.log("called");
   try {
     const keywordsRef = db.collection("keywords");
     const KeywordsDoc = await keywordsRef.get();
@@ -40,6 +39,5 @@ export const getdailySummariesForMonthRange = async (monthRange) => {
     .collection("dailySummary")
     .where("date", ">", fromDate)
     .get();
-  console.log({ dailySummaries });
   return dailySummaries.docs.map((dailySummary) => dailySummary.data());
 };

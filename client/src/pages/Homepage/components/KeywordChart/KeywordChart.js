@@ -37,13 +37,13 @@ const generateDatasets = (data) => {
 };
 
 const generateDailySummariesDataset = (dailySummaries) => {
-  const dailySummariesDummy = [];
-  for (let index = 0; index < 31; index++) {
-    dailySummariesDummy.push({
-      date: moment().subtract(index, "day"),
-      totalDayAdCount: Math.floor(Math.random() * 50),
-    });
-  }
+  // const dailySummariesDummy = [];
+  // for (let index = 0; index < 31; index++) {
+  //   dailySummariesDummy.push({
+  //     date: moment().subtract(index, "day"),
+  //     totalDayAdCount: Math.floor(Math.random() * 50),
+  //   });
+  // }
   return {
     label: "Annonser Totalt",
     fill: false,
@@ -63,8 +63,8 @@ const generateDailySummariesDataset = (dailySummaries) => {
     pointHoverBorderWidth: 2,
     pointRadius: 5,
     pointHitRadius: 10,
-    data: dailySummariesDummy.map(({ date, totalDayAdCount }) => ({
-      x: date,
+    data: dailySummaries.map(({ date, totalDayAdCount }) => ({
+      x: moment(date.toDate()),
       y: totalDayAdCount,
     })),
   };
@@ -132,7 +132,7 @@ const generateChartOptions = (monthRange) => {
 
 const KeywordChart = () => {
   const [dailySummaries, setDailySummaries] = useState();
-  const { monthRange, handleNewMonthRange, chartData } = useGlobalState();
+  const { monthRange, chartData } = useGlobalState();
 
   useEffect(() => {
     const fetchDailySummary = async () => {
@@ -144,14 +144,11 @@ const KeywordChart = () => {
     fetchDailySummary();
   }, [monthRange]);
 
-  // if (!dailySummaries) {
-  //   return <div>Loading...</div>;
-  // }
+  if (!dailySummaries) {
+    return <div>Loading...</div>;
+  }
 
-  const dailySummariesDataset = useCallback(
-    generateDailySummariesDataset(dailySummaries),
-    []
-  );
+  const dailySummariesDataset = generateDailySummariesDataset(dailySummaries);
   const keywordsDatasets = generateDatasets(chartData);
   const graphData = {
     datasets: [dailySummariesDataset, ...keywordsDatasets],

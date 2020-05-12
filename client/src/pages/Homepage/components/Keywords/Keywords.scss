@@ -4,9 +4,11 @@
   padding: 1rem 0;
   display: flex;
   list-style: none;
+  flex-wrap: wrap;
 
   li {
     padding: 0.5rem 0.75rem;
+    margin: 0.2rem 0;
     margin-right: 1rem;
 
     &:hover {
@@ -15,11 +17,11 @@
   }
 
   .totalt {
-    border: 2px solid rgb(0, 62, 231);
+    border: 2px solid #00589c;
     border-radius: 5px;
   }
   .keyword {
-    border: 2px solid rgb(175, 124, 175);
+    border: 2px solid;
     border-radius: 5px;
     display: flex;
     align-items: center;

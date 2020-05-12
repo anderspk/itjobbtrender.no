@@ -1,17 +1,19 @@
 import React from "react";
 import { useGlobalState } from "../../../../providers/GlobalProvider";
 import "./Keywords.scss";
+import { colors } from "../../../../utils/colorsUtil";
 
 const Keywords = () => {
   const { activeKeywords, handleRemoveKeyword } = useGlobalState();
 
   return (
     <ul className="keywords">
-      <li className="totalt">Anonser Totalt</li>
-      {activeKeywords.map((keyword) => (
+      {/* <li className="totalt">Anonser Totalt</li> */}
+      {activeKeywords.map((keyword, i) => (
         <li
           key={keyword}
           className="keyword"
+          style={{ borderColor: colors[i] }}
           onClick={() => handleRemoveKeyword(keyword)}
         >
           {keyword}

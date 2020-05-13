@@ -16,6 +16,8 @@ exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
   );
 
 exports.getKeywords = () =>
+  console.log({ dirname: __dirname }) ||
+  console.log({ cwd: process.cwd() }) ||
   new Set(
     fs
       .readFileSync(
@@ -24,7 +26,9 @@ exports.getKeywords = () =>
       )
       .replace(/(\r\n|\n|\r)/gm, "\n")
       .split("\n")
-      .map((word) => word.toLowerCase())
+      .map((word) => {
+        if (word.trim().length > 0) return word.toLowerCase();
+      })
   );
 
 exports.getYesterdaysAdsUrls = ($) =>

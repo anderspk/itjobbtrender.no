@@ -39,7 +39,7 @@ exports.finn = async () => {
     keywords
   );
 
-  await db.saveDailySummary(yesterdaysAdsUrls.length);
-  await db.saveKeywords(totalDayKeywordCount);
+  // await db.saveDailySummary(yesterdaysAdsUrls.length);
+  // await db.saveKeywords(totalDayKeywordCount);
   console.log("Finn.no scraper complete");
 };

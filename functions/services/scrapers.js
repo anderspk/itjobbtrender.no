@@ -4,7 +4,6 @@ exports.finn = async () => {
   const {
     fetchPage,
     getYesterdaysAdPages,
-    getKeywords,
     getYesterdaysAdsUrls,
     getTotalDayKeywordCount,
     getLastAdOnPageWasYesterday,
@@ -32,12 +31,7 @@ exports.finn = async () => {
 
   const yesterdaysAdPages = await getYesterdaysAdPages(yesterdaysAdsUrls);
 
-  const keywords = getKeywords();
-
-  const totalDayKeywordCount = getTotalDayKeywordCount(
-    yesterdaysAdPages,
-    keywords
-  );
+  const totalDayKeywordCount = getTotalDayKeywordCount(yesterdaysAdPages);
 
   await db.saveDailySummary(yesterdaysAdsUrls.length);
   await db.saveKeywords(totalDayKeywordCount);

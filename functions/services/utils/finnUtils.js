@@ -15,7 +15,7 @@ exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
     yesterdaysAdsUrls.map((url) => fetchData(`https://www.finn.no${url}`))
   );
 
-exports.getKeywords = () =>
+const getKeywords = () =>
   new Set(
     fs
       .readFileSync(path.resolve(process.cwd(), "./keywordsList.txt"), "utf-8")
@@ -45,20 +45,37 @@ exports.getLastAdOnPageWasYesterday = ($) => {
     .includes("1 dag siden");
 };
 
-exports.getTotalDayKeywordCount = (yesterdaysAdPages, keywords) => {
+exports.getTotalDayKeywordCount = (yesterdaysAdPages) => {
+  const keywordsList = getKeywords();
+
   const totalDayKeywordCount = new Map();
-  keywords.forEach((keyword) => totalDayKeywordCount.set(keyword, 0));
 
-  yesterdaysAdPages.forEach(($page) => {
-    const textOnPage = $page(".grid__unit.u-r-size2of3").text().toLowerCase();
+  keywordsList.forEach((rawKeyword) => {
+    let [keyword, variants] = rawKeyword.split("==");
+    keyword = keyword.trim();
 
-    keywords.forEach((keyword) => {
-      const containsKeyword = [".", "+", "#"].some((specialCharacter) =>
-        keyword.includes(specialCharacter)
-      )
-        ? textOnPage.includes(keyword)
-        : textOnPage.match(new RegExp(`\\b${keyword}\\b`));
-      if (containsKeyword) {
+    variants = variants
+      ? variants.split("||").map((keywordVariant) => keywordVariant.trim())
+      : [keyword];
+
+    totalDayKeywordCount.set(keyword, 0);
+
+    yesterdaysAdPages.forEach(($page) => {
+      const textOnPage = $page(".grid__unit.u-r-size2of3").text().toLowerCase();
+
+      const containsAVariantOfKeyword = variants.some((variant) => {
+        const variantContainsSpecialCharacter = [
+          ".",
+          "+",
+          "#",
+        ].some((specialCharacter) => variant.includes(specialCharacter));
+
+        return variantContainsSpecialCharacter
+          ? textOnPage.includes(variant)
+          : textOnPage.match(new RegExp(`\\b${variant}\\b`));
+      });
+
+      if (containsAVariantOfKeyword) {
         totalDayKeywordCount.set(
           keyword,
           totalDayKeywordCount.get(keyword) + 1

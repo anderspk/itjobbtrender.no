@@ -9,7 +9,8 @@ Docker
 DevOps
 Elixir
 Frontend
-Go-lang
+Go == Go || Golang || Go-lang
+Google Cloud Platform == Google Cloud Platform || GCP || Google Cloud
 Java
 Javascript
 Kubernetes

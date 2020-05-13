@@ -14,7 +14,6 @@ const generateDatasets = (data) => {
     label: keyword,
     fill: false,
     lineTension: 0.3,
-    backgroundColor: "rgba(75,192,192,0.4)",
     borderColor: colors[i % colors.length],
     borderCapStyle: "butt",
     borderDash: [],
@@ -23,9 +22,9 @@ const generateDatasets = (data) => {
     pointBorderColor: colors[i % colors.length],
     pointBackgroundColor: colors[i % colors.length],
     pointBorderWidth: 1,
-    pointHoverRadius: 5,
-    pointHoverBackgroundColor: colors[i % colors.length],
-    pointHoverBorderColor: "rgba(220,220,220,1)",
+    pointHoverRadius: 4,
+    pointHoverBackgroundColor: "white",
+    pointHoverBorderColor: colors[i % colors.length],
     pointHoverBorderWidth: 2,
     pointRadius: 3,
     pointHitRadius: 10,
@@ -36,39 +35,29 @@ const generateDatasets = (data) => {
   }));
 };
 
-const generateDailySummariesDataset = (dailySummaries) => {
-  // const dailySummariesDummy = [];
-  // for (let index = 0; index < 31; index++) {
-  //   dailySummariesDummy.push({
-  //     date: moment().subtract(index, "day"),
-  //     totalDayAdCount: Math.floor(Math.random() * 50),
-  //   });
-  // }
-  return {
-    label: "IT-Jobbannonser totalt",
-    fill: false,
-    lineTension: 0.3,
-    backgroundColor: "rgba(33,150,243,0.1)",
-    borderColor: "#00589c",
-    borderCapStyle: "butt",
-    borderDash: [],
-    borderDashOffset: 0.0,
-    borderJoinStyle: "miter",
-    pointBorderColor: "white",
-    pointBackgroundColor: "#00589c",
-    pointBorderWidth: 1,
-    pointHoverRadius: 5,
-    pointHoverBackgroundColor: "white",
-    pointHoverBorderColor: "#00589c",
-    pointHoverBorderWidth: 2,
-    pointRadius: 5,
-    pointHitRadius: 10,
-    data: dailySummaries.map(({ date, totalDayAdCount }) => ({
-      x: moment(date.toDate()),
-      y: totalDayAdCount,
-    })),
-  };
-};
+const generateDailySummariesDataset = (dailySummaries) => ({
+  label: "IT-Jobbannonser totalt",
+  fill: false,
+  lineTension: 0.3,
+  borderColor: "#00589c",
+  borderCapStyle: "butt",
+  borderDash: [],
+  borderDashOffset: 0.0,
+  borderJoinStyle: "miter",
+  pointBorderColor: "#00589c",
+  pointBackgroundColor: "#00589c",
+  pointBorderWidth: 1,
+  pointHoverRadius: 4,
+  pointHoverBackgroundColor: "white",
+  pointHoverBorderColor: "#00589c",
+  pointHoverBorderWidth: 2,
+  pointRadius: 3,
+  pointHitRadius: 10,
+  data: dailySummaries.map(({ date, totalDayAdCount }) => ({
+    x: moment(date.toDate()),
+    y: totalDayAdCount,
+  })),
+});
 
 const generateChartOptions = (monthRange) => {
   let xAxisUnit = "week";

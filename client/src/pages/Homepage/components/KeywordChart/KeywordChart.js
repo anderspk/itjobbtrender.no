@@ -45,7 +45,7 @@ const generateDailySummariesDataset = (dailySummaries) => {
   //   });
   // }
   return {
-    label: "Annonser Totalt",
+    label: "IT-Jobbannonser totalt",
     fill: false,
     lineTension: 0.3,
     backgroundColor: "rgba(33,150,243,0.1)",

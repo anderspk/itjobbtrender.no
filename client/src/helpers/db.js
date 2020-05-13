@@ -36,7 +36,7 @@ export const getMultipleKeywordsMonthsRange = async (keywords, monthsRange) => {
 export const getdailySummariesForMonthRange = async (monthRange) => {
   const fromDate = moment().subtract(monthRange, "month").toDate();
   const dailySummaries = await db
-    .collection("dailySummary")
+    .collection("dailySummaries")
     .where("date", ">", fromDate)
     .get();
   return dailySummaries.docs.map((dailySummary) => dailySummary.data());

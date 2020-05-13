@@ -24,7 +24,7 @@ exports.getKeywords = () =>
   );
 
 exports.getYesterdaysAdsUrls = ($) =>
-  (yesterdaysAdsUrls = $("article.ads__unit")
+  $("article.ads__unit")
     .map((i, el) => {
       if (
         $(".ads__unit__content__details", el).text().includes("1 dag siden")
@@ -32,7 +32,7 @@ exports.getYesterdaysAdsUrls = ($) =>
         return $("h2 a", el).attr("href");
       }
     })
-    .get());
+    .get();
 
 exports.getLastAdOnPageWasYesterday = ($) => {
   const lastAd = $("article.ads__unit").children().last();
@@ -50,7 +50,12 @@ exports.getTotalDayKeywordCount = (yesterdaysAdPages, keywords) => {
     const textOnPage = $page(".grid__unit.u-r-size2of3").text().toLowerCase();
 
     keywords.forEach((keyword) => {
-      if (textOnPage.match(new RegExp(`\\b${keyword}\\b`))) {
+      const containsKeyword = [".", "+"].some((specialCharacter) =>
+        keyword.includes(specialCharacter)
+      )
+        ? textOnPage.includes(keyword)
+        : textOnPage.match(new RegExp(`\\b${keyword}\\b`));
+      if (containsKeyword) {
         totalDayKeywordCount.set(
           keyword,
           totalDayKeywordCount.get(keyword) + 1

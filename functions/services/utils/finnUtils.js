@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
@@ -17,7 +18,10 @@ exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
 exports.getKeywords = () =>
   new Set(
     fs
-      .readFileSync("../keywordsList.txt", "utf-8")
+      .readFileSync(
+        path.resolve(__dirname, "../../../keywordsList.txt"),
+        "utf-8"
+      )
       .replace(/(\r\n|\n|\r)/gm, "\n")
       .split("\n")
       .map((word) => word.toLowerCase())

@@ -16,14 +16,9 @@ exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
   );
 
 exports.getKeywords = () =>
-  console.log({ dirname: __dirname }) ||
-  console.log({ cwd: process.cwd() }) ||
   new Set(
     fs
-      .readFileSync(
-        path.resolve(__dirname, "../../../keywordsList.txt"),
-        "utf-8"
-      )
+      .readFileSync(path.resolve(process.cwd(), "./keywordsList.txt"), "utf-8")
       .replace(/(\r\n|\n|\r)/gm, "\n")
       .split("\n")
       .map((word) => {

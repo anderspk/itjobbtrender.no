@@ -1,6 +1,6 @@
 # ITJobbtrender 💪💪💪
 
-ITJobbtrender er en nettjeneste som søker gjennom de nye IT-jobbannonsene på Finn.no hver dag, og teller hvor mange av de nevner visse nøkkelord.
+ITJobbtrender er en nettjeneste som søker gjennom de nye IT-jobbannonsene på Finn.no hver dag, og teller hvor mange av de nevner visse IT-relaterte nøkkelord.
 
 [Live side](https://itjobbtrender.web.app/)
 

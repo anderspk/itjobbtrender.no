@@ -50,7 +50,7 @@ exports.getTotalDayKeywordCount = (yesterdaysAdPages, keywords) => {
     const textOnPage = $page(".grid__unit.u-r-size2of3").text().toLowerCase();
 
     keywords.forEach((keyword) => {
-      const containsKeyword = [".", "+"].some((specialCharacter) =>
+      const containsKeyword = [".", "+", "#"].some((specialCharacter) =>
         keyword.includes(specialCharacter)
       )
         ? textOnPage.includes(keyword)

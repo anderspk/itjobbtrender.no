@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../images/line-chart.png";
 import "./Header.scss";
 
 const Header = () => {

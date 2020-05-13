@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import moment from "moment";
 import { useGlobalState } from "../../../../providers/GlobalProvider";

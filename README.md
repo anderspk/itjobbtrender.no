@@ -11,7 +11,7 @@ Obs! Vennligst legg merke til de to retningslinjene for å utvide nøkkelord-lis
 
 1. Nøkkelord skal være i alfabetisk rekkefølge
 2. Dersom du vil legge til varianter av et nøkkelord så må du følge dette formatet:
-`nøkkelord == variant || variant || variant...` der `nøkkelord` er "hovedvarianten" som også vises i frontenden og brukes til søk.
+```nøkkelord == variant || variant || variant...``` der `nøkkelord` er "hovedvarianten" som også vises i frontenden og brukes til søk.
 Husk også å inkludere "hovedvarianten" som en `variant`
 
 👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻

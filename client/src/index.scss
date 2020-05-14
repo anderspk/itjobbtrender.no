@@ -12,6 +12,9 @@ body {
 }
 
 @media screen and (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
   h1 {
     font-size: 24px !important;
   }

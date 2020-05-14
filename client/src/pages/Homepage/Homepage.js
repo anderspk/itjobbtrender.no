@@ -4,6 +4,7 @@ import SearchForm from "./components/SearchForm/SearchForm";
 import Keywords from "./components/Keywords/Keywords";
 import KeywordChart from "./components/KeywordChart/KeywordChart";
 import TimeframePicker from "./components/TimeframePicker/TimeframePicker";
+import Popular from "./components/Popular/Popular";
 
 const Homepage = () => {
   return (
@@ -12,6 +13,7 @@ const Homepage = () => {
         Sammenlign hvilke IT-relaterte stikkord blir nevnt i Finn.no
         jobbannonser over tid
       </h1>
+      <Popular />
       <SearchForm />
       <Keywords />
       <TimeframePicker />

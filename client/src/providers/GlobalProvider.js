@@ -38,6 +38,24 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
+  const handlePopularChoicePick = async (...choices) => {
+    setActiveKeywords(choices);
+
+    try {
+      const KeywordsChartData = await Promise.all(
+        choices.map((choice) => db.getKeywordForMonthRange(choice, monthRange))
+      );
+
+      const newChartData = {};
+      choices.forEach(
+        (choice, i) => (newChartData[choice] = KeywordsChartData[i])
+      );
+      setChartData(newChartData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleRemoveKeyword = (keywordToRemove) => {
     setActiveKeywords(
       activeKeywords.filter((keyword) => keyword !== keywordToRemove)
@@ -64,6 +82,7 @@ const GlobalProvider = ({ children }) => {
     monthRange,
     handleNewMonthRange,
     chartData,
+    handlePopularChoicePick,
   };
 
   return <Provider value={contextValue}>{children}</Provider>;

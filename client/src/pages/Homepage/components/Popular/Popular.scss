@@ -1,0 +1,28 @@
+.popular {
+  h3 {
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    li {
+      margin: 2px 0;
+      color: #5e94e6;
+
+      .vs {
+        font-weight: 300;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

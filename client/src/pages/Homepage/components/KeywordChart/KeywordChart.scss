@@ -2,4 +2,19 @@
   position: relative;
   height: 50vh;
   min-height: 340px;
+  transition: all 0.5s ease-out;
+  margin-bottom: 2rem;
+
+  &.loading {
+    transform: translateY(75px);
+    opacity: 0;
+  }
+}
+
+.react-loading {
+  height: 120px !important;
+  width: 120px !important;
+  fill: #b1b1b1 !important;
+  opacity: 0.8;
+  margin: 0 auto;
 }

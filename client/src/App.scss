@@ -1,6 +1,7 @@
 .app {
-  height: 100vh;
+  min-height: 100vh;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 0.5rem;
+  padding: 0 0.5rem 4rem;
+  position: relative;
 }

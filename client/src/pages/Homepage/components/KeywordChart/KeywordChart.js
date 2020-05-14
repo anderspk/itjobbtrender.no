@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import moment from "moment";
 import { useGlobalState } from "../../../../providers/GlobalProvider";
@@ -121,8 +121,9 @@ const generateChartOptions = (monthRange) => {
 };
 
 const KeywordChart = () => {
-  const [dailySummaries, setDailySummaries] = useState();
+  const [dailySummaries, setDailySummaries] = useState([]);
   const { monthRange, chartData } = useGlobalState();
+  const loaded = useRef(false);
 
   useEffect(() => {
     const fetchDailySummary = async () => {
@@ -130,13 +131,14 @@ const KeywordChart = () => {
         monthRange
       );
       setDailySummaries(dailySummaries);
+      loaded.current = true;
     };
     fetchDailySummary();
   }, [monthRange]);
 
-  if (!dailySummaries) {
-    return <div>Loading...</div>;
-  }
+  // if (!dailySummaries) {
+  //   return <div>Loading...</div>;
+  // }
 
   const dailySummariesDataset = generateDailySummariesDataset(dailySummaries);
   const keywordsDatasets = generateDatasets(chartData);
@@ -145,12 +147,8 @@ const KeywordChart = () => {
   };
 
   return (
-    <div className="keyword-chart">
-      <Line
-        options={generateChartOptions(monthRange)}
-        height={100}
-        data={graphData}
-      />
+    <div className={`keyword-chart ${!loaded.current ? "loading" : ""}`}>
+      <Line options={generateChartOptions(monthRange)} data={graphData} />
     </div>
   );
 };

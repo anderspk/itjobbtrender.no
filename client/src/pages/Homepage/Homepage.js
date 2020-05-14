@@ -24,8 +24,8 @@ const Homepage = () => {
         <a href="https://github.com/anderspk/itjobbtrender">Github</a>
       </p>
       <p className="info">
-        Ny data hentes automatisk hver dag fra nye IT-jobbannonser som legges ut
-        på Finn.no
+        Data hentes automatisk hver dag fra nye IT-jobbannonser som legges ut på
+        Finn.no
       </p>
     </main>
   );

@@ -8,7 +8,7 @@ import Popular from "./components/Popular/Popular";
 
 const Homepage = () => {
   return (
-    <div className="homepage">
+    <main className="homepage">
       <h1>
         Sammenlign hvilke IT-relaterte stikkord blir nevnt i Finn.no
         jobbannonser over tid
@@ -27,7 +27,7 @@ const Homepage = () => {
         Ny data hentes automatisk hver dag fra nye IT-jobbannonser som legges ut
         på Finn.no
       </p>
-    </div>
+    </main>
   );
 };
 

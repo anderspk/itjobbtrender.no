@@ -87,6 +87,8 @@ const SearchForm = () => {
       <form onSubmit={handleOnSubmit}>
         <input
           type="text"
+          role="search"
+          aria-label="Search"
           value={searchTerm}
           onChange={handleKeyPress}
           onKeyDown={handleKeyPress}

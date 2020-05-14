@@ -2,7 +2,7 @@
 
 ITJobbtrender er en nettjeneste som søker gjennom de nye IT-jobbannonsene på Finn.no hver dag, og teller hvor mange av de nevner visse IT-relaterte nøkkelord.
 
-[Live side](https://itjobbtrender.web.app/)
+[Live side](https://itjobbtrender.no/)
 
 Nøkkelordene kommer fra en liste som alle kan bidra til.
 [Listen finner du her](https://github.com/anderspk/itjobbtrender/blob/master/functions/keywordsList.txt)
@@ -11,8 +11,8 @@ Obs! Vennligst legg merke til de to retningslinjene for å utvide nøkkelord-lis
 
 1. Nøkkelord skal være i alfabetisk rekkefølge
 2. Dersom du vil legge til varianter av et nøkkelord så må du følge dette formatet:
-```nøkkelord == variant || variant || variant...``` der `nøkkelord` er "hovedvarianten" som også vises i frontenden og brukes til søk.
-Husk også å inkludere "hovedvarianten" som en `variant`
+   `nøkkelord == variant || variant || variant...` der `nøkkelord` er "hovedvarianten" som også vises i frontenden og brukes til søk.
+   Husk også å inkludere "hovedvarianten" som en `variant`
 
 👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻👨‍💻👩‍💻
 

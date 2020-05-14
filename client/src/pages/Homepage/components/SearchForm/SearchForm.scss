@@ -28,6 +28,8 @@
     width: 100%;
     list-style: none;
     position: absolute;
+    max-height: 25vh;
+    overflow: auto;
     z-index: 2;
 
     -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
@@ -47,5 +49,12 @@
         background-color: $light-grey-20;
       }
     }
+  }
+
+  .error-message {
+    position: absolute;
+    top: 100%;
+    left: 1rem;
+    color: #fb480f;
   }
 }

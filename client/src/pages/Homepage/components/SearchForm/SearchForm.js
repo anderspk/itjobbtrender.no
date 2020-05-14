@@ -8,6 +8,7 @@ const SearchForm = () => {
   const [displaySuggestions, setDisplaySuggestions] = useState(true);
   const [filteredList, setFilteredList] = useState([]);
   const [focusOn, setFocusOn] = useState(-1);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const searchFormRef = useRef(null);
 
@@ -19,6 +20,7 @@ const SearchForm = () => {
       !allKeywords.includes(searchTerm) ||
       activeKeywords.includes(searchTerm)
     ) {
+      setErrorMessage("Obs! Nøkkelord må være i listen");
       return;
     }
     handleNewSearch(searchTerm);
@@ -35,24 +37,18 @@ const SearchForm = () => {
   useClickOutside(searchFormRef, handleClickOutside);
 
   const handleKeyPress = (e) => {
-    if (!displaySuggestions) {
-      setDisplaySuggestions(true);
+    if (errorMessage) {
+      setErrorMessage("");
     }
 
     if (e.key === "ArrowUp") {
       e.preventDefault();
-      if (!searchTerm) {
-        return;
-      }
       const newFocusOn =
         focusOn - 1 < 0 ? filteredList.length - 1 : focusOn - 1;
       setFocusOn(newFocusOn);
       setSearchTerm(filteredList[newFocusOn]);
       return;
     } else if (e.key === "ArrowDown") {
-      if (!searchTerm) {
-        return;
-      }
       e.preventDefault();
       const newFocusOn = (focusOn + 1) % filteredList.length;
       setSearchTerm(filteredList[newFocusOn]);
@@ -61,17 +57,7 @@ const SearchForm = () => {
     }
     const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
-    setFilteredList(
-      newSearchTerm
-        ? allKeywords
-            .filter(
-              (word) =>
-                word.startsWith(newSearchTerm.toLowerCase()) &&
-                !activeKeywords.includes(word)
-            )
-            .splice(0, 5)
-        : []
-    );
+    generateFilteredList(newSearchTerm);
   };
 
   const handleHover = (i) => {
@@ -85,6 +71,17 @@ const SearchForm = () => {
     setFilteredList([]);
   };
 
+  const generateFilteredList = (newSearchTerm) => {
+    const currentSearchTerm = newSearchTerm || "";
+    setFilteredList(
+      allKeywords.filter(
+        (word) =>
+          word.startsWith(currentSearchTerm.toLowerCase()) &&
+          !activeKeywords.includes(word)
+      )
+    );
+  };
+
   return (
     <div className="search-form" ref={searchFormRef}>
       <form onSubmit={handleOnSubmit}>
@@ -94,8 +91,15 @@ const SearchForm = () => {
           onChange={handleKeyPress}
           onKeyDown={handleKeyPress}
           placeholder="Søk"
+          onFocus={() => {
+            setDisplaySuggestions(true);
+            generateFilteredList();
+          }}
         />
       </form>
+      <p className={`${errorMessage ? "error-message" : "hidden"}`}>
+        {errorMessage}
+      </p>
       <ul
         className={
           filteredList.length > 0 && displaySuggestions

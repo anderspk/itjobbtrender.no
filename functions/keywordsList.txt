@@ -1,10 +1,13 @@
 Angular
-AWS
+AWS == Amazon Web Service
 Azure
 Backend
+Caffe == Caffe2
 Celebrus
 C++
 C#
+CUDA
+Data Scientist
 Docker
 DevOps
 Elixir
@@ -13,18 +16,23 @@ Go == Go || Golang || Go-lang
 Google Cloud Platform == Google Cloud Platform || GCP || Google Cloud
 Java
 Javascript
+Keras
 Kubernetes
 Linux
-Node
+Node == node.js || nodejs
+Maskinlæringsingeniør == Machine Learning Engineer
 MySQL
 NoSQL
 PHP
+PyTorch
 Python
 React
 Rust
 Salesforce
+Scikit-learn == scikit learn
 Spring
 Systemutvikler
+Tensorflow
 Teradata
 UI
 UX

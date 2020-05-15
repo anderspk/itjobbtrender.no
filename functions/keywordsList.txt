@@ -18,8 +18,10 @@ Java
 Javascript
 Keras
 Kubernetes
+Kunstig Intelligens == Artificial Intelligence || A.I. || K.I.
 Linux
 Node == node.js || nodejs
+Maskinlæring == Machine Learning
 Maskinlæringsingeniør == Machine Learning Engineer
 MySQL
 NoSQL

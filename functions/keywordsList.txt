@@ -1,41 +1,45 @@
+AI == Kunstig Intelligens || Artificial Intelligence || A.I. || K.I. || AI
 Angular
-AWS == Amazon Web Service
+AWS == AWS || Amazon Web Service
 Azure
 Backend
-Caffe == Caffe2
+Caffe == Caffe || Caffe2
 Celebrus
 C++
 C#
 CUDA
 Data Scientist
+Deno
 Docker
 DevOps
 Elixir
 Frontend
 Go == Go || Golang || Go-lang
 Google Cloud Platform == Google Cloud Platform || GCP || Google Cloud
+Heroku
 Java
 Javascript
 Keras
 Kubernetes
-Kunstig Intelligens == Artificial Intelligence || A.I. || K.I.
 Linux
-Node == node.js || nodejs
-Maskinlæring == Machine Learning
-Maskinlæringsingeniør == Machine Learning Engineer
+Node == node || node.js || nodejs
+Maskinlæring == Maskinlæring || Machine Learning || ML
+Maskinlæringsingeniør == Maskinlæringsingeniør || Machine Learning Engineer
 MySQL
 NoSQL
 PHP
-PyTorch
 Python
+PyTorch
 React
 Rust
 Salesforce
-Scikit-learn == scikit learn
+Scikit-learn == Scikit-learn || scikit learn
 Spring
+Sql
 Systemutvikler
 Tensorflow
 Teradata
+Typescript
 UI
 UX
 Vue

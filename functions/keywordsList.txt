@@ -10,8 +10,8 @@ C#
 CUDA
 Data Scientist
 Deno
-Docker
 DevOps
+Docker
 Elixir
 Frontend
 Go == Go || Golang || Go-lang

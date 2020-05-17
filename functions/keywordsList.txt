@@ -22,10 +22,10 @@ Javascript
 Keras
 Kubernetes
 Linux
-Node == node || node.js || nodejs
 Maskinlæring == Maskinlæring || Machine Learning || ML
 Maskinlæringsingeniør == Maskinlæringsingeniør || Machine Learning Engineer
 MySQL
+Node == node || node.js || nodejs
 NoSQL
 PHP
 Python

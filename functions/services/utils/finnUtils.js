@@ -51,6 +51,10 @@ exports.getTotalDayKeywordCount = (yesterdaysAdPages) => {
   const totalDayKeywordCount = new Map();
 
   keywordsList.forEach((rawKeyword) => {
+    if (!rawKeyword || !rawKeyword.trim()) {
+      return;
+    }
+
     let [keyword, variants] = rawKeyword.split("==");
     keyword = keyword.trim();
 

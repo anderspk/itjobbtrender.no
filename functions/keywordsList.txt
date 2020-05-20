@@ -1,8 +1,10 @@
 AI == Kunstig Intelligens || Artificial Intelligence || A.I. || K.I. || AI
+Android
 Angular
 AWS == AWS || Amazon Web Service
 Azure
 Backend
+C
 Caffe == Caffe || Caffe2
 Celebrus
 C++
@@ -17,9 +19,11 @@ Frontend
 Go == Go || Golang || Go-lang
 Google Cloud Platform == Google Cloud Platform || GCP || Google Cloud
 Heroku
+Ios
 Java
 Javascript
 Keras
+Kotlin
 Kubernetes
 Linux
 Maskinlæring == Maskinlæring || Machine Learning || ML
@@ -30,12 +34,13 @@ NoSQL
 PHP
 Python
 PyTorch
-React
+React == React || Reactjs || React.js
 Rust
 Salesforce
 Scikit-learn == Scikit-learn || scikit learn
 Spring
 Sql
+Swift
 Systemutvikler
 Tensorflow
 Teradata

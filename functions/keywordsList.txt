@@ -22,6 +22,7 @@ Heroku
 Ios
 Java
 Javascript
+Kafka == Kafka || Apache Kafka
 Keras
 Kotlin
 Kubernetes
@@ -31,7 +32,9 @@ Maskinlæringsingeniør == Maskinlæringsingeniør || Machine Learning Engineer
 MySQL
 Node == node || node.js || nodejs
 NoSQL
+Oracle
 PHP
+Postgres
 Python
 PyTorch
 React == React || Reactjs || React.js

@@ -30,7 +30,7 @@ exports.getYesterdaysAdsUrls = ($) =>
   $("article.ads__unit")
     .map((i, el) => {
       if (
-        $(".ads__unit__content__details", el).text().includes("1 dag siden")
+        $(".ads__unit__content__details", el).text().includes("en dag siden")
       ) {
         return $("h2 a", el).attr("href");
       }

@@ -10,7 +10,7 @@ exports.finn = async () => {
   } = require("./utils/finnUtils");
 
   const SITE_URL =
-    "www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23";
+    "https://www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23";
 
   const $ = await fetchPage(SITE_URL);
   let yesterdaysAdsUrls = getYesterdaysAdsUrls($);
@@ -19,7 +19,7 @@ exports.finn = async () => {
   if (lastAdOnPageWasYesterday) {
     while (lastAdOnPageWasYesterday) {
       let nextPage = 2;
-      const nextPageURL = `www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23&page=${nextPage}`;
+      const nextPageURL = `https://www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23&page=${nextPage}`;
       // eslint-disable-next-line no-await-in-loop
       const $nextPage = await fetchPage(nextPageURL);
       yesterdaysAdsUrls = yesterdaysAdsUrls.concat(

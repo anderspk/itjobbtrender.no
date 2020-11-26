@@ -12,7 +12,7 @@ exports.fetchPage = (url) => fetchData(url);
 
 exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
   Promise.all(
-    yesterdaysAdsUrls.map((url) => fetchData(`https://www.finn.no${url}`))
+    yesterdaysAdsUrls.map((url) => fetchData(`www.finn.no${url}`))
   );
 
 const getKeywords = () =>

@@ -69,7 +69,7 @@ const GlobalProvider = ({ children }) => {
     setMonthRange(newMonthRange);
     const chartDataWithNewMonthRange = await db.getMultipleKeywordsMonthsRange(
       activeKeywords,
-      monthRange
+      newMonthRange
     );
     setChartData(chartDataWithNewMonthRange);
   };

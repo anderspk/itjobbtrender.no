@@ -6,8 +6,31 @@ import "./KeywordChart.scss";
 import * as db from "../../../../helpers/db";
 import { colors } from "../../../../utils/colorsUtil";
 
-// const first = "#ff6384";
-// const second = "#36a2eb";
+const crunchDailySummariesIntoWeekly = (dailySummaries, countKeyword) => {
+  if (!dailySummaries.length) return [];
+
+  let countSum = 0;
+  const weeklySummaries = [];
+
+  for (let index = 0; index < dailySummaries.length; index++) {
+    countSum += dailySummaries[dailySummaries.length - 1 - index][countKeyword];
+    if (index !== 0 && index % 7 === 0) {
+      weeklySummaries.push({
+        date: dailySummaries[dailySummaries.length - 1 - index].date,
+        count: countSum,
+      });
+      countSum = 0;
+    }
+  }
+  if ((dailySummaries.length - 1) % 7 !== 0) {
+    weeklySummaries.push({
+      date: dailySummaries[0].date,
+      count: countSum,
+    });
+  }
+
+  return weeklySummaries;
+};
 
 const generateDatasets = (data) => {
   return Object.keys(data).map((keyword, i) => ({
@@ -28,10 +51,12 @@ const generateDatasets = (data) => {
     pointHoverBorderWidth: 2,
     pointRadius: 3,
     pointHitRadius: 10,
-    data: data[keyword].map(({ date, count }) => ({
-      x: moment(date.toDate()),
-      y: count,
-    })),
+    data: crunchDailySummariesIntoWeekly(data[keyword], "count").map(
+      ({ date, count }) => ({
+        x: moment(date.toDate()),
+        y: count,
+      })
+    ),
   }));
 };
 
@@ -53,10 +78,12 @@ const generateDailySummariesDataset = (dailySummaries) => ({
   pointHoverBorderWidth: 2,
   pointRadius: 3,
   pointHitRadius: 10,
-  data: dailySummaries.map(({ date, totalDayAdCount }) => ({
-    x: moment(date.toDate()),
-    y: totalDayAdCount,
-  })),
+  data: crunchDailySummariesIntoWeekly(dailySummaries, "totalDayAdCount").map(
+    ({ date, count }) => ({
+      x: moment(date.toDate()),
+      y: count,
+    })
+  ),
 });
 
 const generateChartOptions = (monthRange) => {
@@ -90,7 +117,6 @@ const generateChartOptions = (monthRange) => {
             display: true,
             autoSkip: true,
             min: moment().subtract(monthRange, "month"),
-            // maxTicksLimit: 4,
           },
         },
       ],

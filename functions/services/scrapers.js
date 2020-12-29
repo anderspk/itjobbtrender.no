@@ -10,23 +10,21 @@ exports.finn = async () => {
   } = require("./utils/finnUtils");
 
   const SITE_URL =
-    "www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23";
+    "http://www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23";
 
   const $ = await fetchPage(SITE_URL);
   let yesterdaysAdsUrls = getYesterdaysAdsUrls($);
   let lastAdOnPageWasYesterday = getLastAdOnPageWasYesterday($);
 
-  if (lastAdOnPageWasYesterday) {
-    while (lastAdOnPageWasYesterday) {
-      let nextPage = 2;
-      const nextPageURL = `www.finn.no/job/fulltime/search.html?hideConsentBox=&occupation=0.23&page=${nextPage}`;
-      // eslint-disable-next-line no-await-in-loop
-      const $nextPage = await fetchPage(nextPageURL);
-      yesterdaysAdsUrls = yesterdaysAdsUrls.concat(
-        getYesterdaysAdsUrls($nextPage)
-      );
-      lastAdOnPageWasYesterday = getLastAdOnPageWasYesterday($nextPage);
-    }
+  while (lastAdOnPageWasYesterday) {
+    let nextPage = 2;
+    const nextPageURL = `${SITE_URL}&page=${nextPage}`;
+    // eslint-disable-next-line no-await-in-loop
+    const $nextPage = await fetchPage(nextPageURL);
+    yesterdaysAdsUrls = yesterdaysAdsUrls.concat(
+      getYesterdaysAdsUrls($nextPage)
+    );
+    lastAdOnPageWasYesterday = getLastAdOnPageWasYesterday($nextPage);
   }
 
   const yesterdaysAdPages = await getYesterdaysAdPages(yesterdaysAdsUrls);

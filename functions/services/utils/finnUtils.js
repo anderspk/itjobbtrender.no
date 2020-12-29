@@ -11,9 +11,7 @@ const fetchData = async (url) => {
 exports.fetchPage = (url) => fetchData(url);
 
 exports.getYesterdaysAdPages = (yesterdaysAdsUrls) =>
-  Promise.all(
-    yesterdaysAdsUrls.map((url) => fetchData(`www.finn.no${url}`))
-  );
+  Promise.all(yesterdaysAdsUrls.map((url) => fetchData(`www.finn.no${url}`)));
 
 const getKeywords = () =>
   new Set(

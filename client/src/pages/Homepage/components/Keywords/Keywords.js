@@ -8,7 +8,6 @@ const Keywords = () => {
 
   return (
     <ul className="keywords">
-      {/* <li className="totalt">Anonser Totalt</li> */}
       {activeKeywords.map((keyword, i) => (
         <li
           key={keyword}

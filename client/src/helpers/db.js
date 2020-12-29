@@ -1,5 +1,4 @@
 import { db } from "../services/firebase";
-import moment from "moment";
 
 export const getAllKeywords = async () => {
   try {
@@ -11,20 +10,19 @@ export const getAllKeywords = async () => {
   }
 };
 
-export const getKeywordForMonthRange = async (keyword, monthRange) => {
-  const fromDate = moment().subtract(monthRange, "month").toDate();
+export const getKeyword = async (keyword) => {
   const keywordHistorySnapshot = await db
     .collection("keywords")
     .doc(keyword)
     .collection("history")
-    .where("date", ">", fromDate)
+    .orderBy("date")
     .get();
   return keywordHistorySnapshot.docs.map((doc) => doc.data());
 };
 
-export const getMultipleKeywordsMonthsRange = async (keywords, monthsRange) => {
+export const getMultipleKeywords = async (keywords) => {
   const allKeyData = await Promise.all(
-    keywords.map((keyword) => getKeywordForMonthRange(keyword, monthsRange))
+    keywords.map((keyword) => getKeyword(keyword))
   );
 
   const keyDataObject = {};
@@ -33,11 +31,10 @@ export const getMultipleKeywordsMonthsRange = async (keywords, monthsRange) => {
   return keyDataObject;
 };
 
-export const getdailySummariesForMonthRange = async (monthRange) => {
-  const fromDate = moment().subtract(monthRange, "month").toDate();
+export const getdailySummaries = async () => {
   const dailySummaries = await db
     .collection("dailySummaries")
-    .where("date", ">", fromDate)
+    .orderBy("date")
     .get();
   return dailySummaries.docs.map((dailySummary) => dailySummary.data());
 };

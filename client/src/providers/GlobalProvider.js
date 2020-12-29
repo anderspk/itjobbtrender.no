@@ -28,10 +28,7 @@ const GlobalProvider = ({ children }) => {
     setActiveKeywords([...activeKeywords, searchTerm]);
 
     try {
-      const keywordChartData = await db.getKeywordForMonthRange(
-        searchTerm,
-        monthRange
-      );
+      const keywordChartData = await db.getKeyword(searchTerm);
       setChartData({ ...chartData, [searchTerm]: keywordChartData });
     } catch (error) {
       console.error(error);
@@ -43,7 +40,7 @@ const GlobalProvider = ({ children }) => {
 
     try {
       const KeywordsChartData = await Promise.all(
-        choices.map((choice) => db.getKeywordForMonthRange(choice, monthRange))
+        choices.map((choice) => db.getKeyword(choice))
       );
 
       const newChartData = {};
@@ -67,11 +64,6 @@ const GlobalProvider = ({ children }) => {
 
   const handleNewMonthRange = async (newMonthRange) => {
     setMonthRange(newMonthRange);
-    const chartDataWithNewMonthRange = await db.getMultipleKeywordsMonthsRange(
-      activeKeywords,
-      newMonthRange
-    );
-    setChartData(chartDataWithNewMonthRange);
   };
 
   const contextValue = {

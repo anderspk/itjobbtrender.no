@@ -10,21 +10,26 @@ const crunchDailySummariesIntoWeekly = (dailySummaries, countKeyword) => {
   if (!dailySummaries.length) return [];
 
   let countSum = 0;
+  let firstDate = null;
   const weeklySummaries = [];
 
   for (let index = 0; index < dailySummaries.length; index++) {
-    countSum += dailySummaries[dailySummaries.length - 1 - index][countKeyword];
+    const summary = dailySummaries[dailySummaries.length - 1 - index];
+    countSum += summary[countKeyword];
+    if (!firstDate) firstDate = summary.date;
+
     if (index !== 0 && index % 7 === 0) {
       weeklySummaries.push({
-        date: dailySummaries[dailySummaries.length - 1 - index].date,
+        date: firstDate,
         count: countSum,
       });
       countSum = 0;
+      firstDate = null;
     }
   }
   if ((dailySummaries.length - 1) % 7 !== 0) {
     weeklySummaries.push({
-      date: dailySummaries[0].date,
+      date: firstDate,
       count: countSum,
     });
   }
@@ -153,9 +158,7 @@ const KeywordChart = () => {
 
   useEffect(() => {
     const fetchDailySummary = async () => {
-      const dailySummaries = await db.getdailySummariesForMonthRange(
-        monthRange
-      );
+      const dailySummaries = await db.getdailySummaries(monthRange);
       setDailySummaries(dailySummaries);
       loaded.current = true;
     };
